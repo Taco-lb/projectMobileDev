@@ -1,0 +1,65 @@
+<resources>
+    <string name="app_name">Expense Tracker</string>
+    <string name="welcome"><u>Welcome to the Expenses App</u></string>
+    <string name="welcome2"><u>Your Expenses</u></string>
+    <string name="txt0"><u>Category</u> :</string>
+    <string name="txt1"><u>Expense</u> :</string>
+    <string name="txt2"><u>Price</u> :</string>
+    <string name="txt3"><u>Date</u> :</string>
+    <string name="txt7"><u>Payment Type</u> :</string>
+    <string name="txt4"><u>Expense</u></string>
+    <string name="txt5"><u>Price USD</u> :</string>
+    <string name="txt6"><u>Date</u></string>
+    <string name="txt8"><b><u>Payment Type :</u></b></string>
+    <string name="txt9"><u>Category</u> :</string>
+    <string name="name_of_expense">Name of Expense</string>
+    <string name="price_of_expense">Price in USD </string>
+    <string name="date_of_expense">DD/MM/YYYY</string>
+    <string name="btn1">Submit</string>
+    <string name="btn2">View All</string>
+    <string name="btn3">Calculator</string>
+    <string name="info">ExpenseTracker is a user-friendly mobile application designed to simplify the daunting task of tracking your expenses. With this innovative app, managing your finances becomes effortless, empowering you to make informed decisions and achieve your financial goals.</string>
+    <string name="calculator_button_description">Calculator Button</string>
+    <string name="clearTxt">Clear all</string>
+    <string name="clearedTxt">Cleared!</string>
+    <string name="radioCard">Card</string>
+    <string name="radioCash">Cash</string>
+    <string name="change_background_color">Change background color</string>
+    <string name="inLBP">View LBP</string>
+    <string name="inUSD">View USD</string>
+    <string name="UsernameLogin">Username :</string>
+    <string name="PasswordLogin">Password :</string>
+    <string name="newToApp"><u>New to the App? Click Here to Register</u></string>
+    <string name="LoginAccount">Login</string>
+    <string name="alreadyAccount"><u>Already Have an Account? Click Here to Login</u></string>
+    <string name="RegisterAccount">Register</string>
+    <string name="emailLogin">Email :</string>
+    <string name="registerHere">Registration Page</string>
+    <string name="loginHere">Login Page</string>
+    <string name="logout">Log Out</string>
+    <string name="txt10"><u>Id :</u></string>
+    <string name="deleteExpense">Delete </string>
+    <string name="updateExpense">Update </string>
+    <string name="EditingExpense">Edit your Expense Here</string>
+    <string name="goBack">Go Back</string>
+
+    <string-array name="choices_autocomplete">
+        <item>Pizza</item>
+        <item>burger</item>
+        <item>Gas</item>
+        <item>Clothes</item>
+        <item>Jewelry</item>
+        <item>Trip</item>
+        <item>Phone</item>
+    </string-array>
+
+    <string-array name="choices_spinner">
+        <item>Chose a Category</item>
+        <item>Games</item>
+        <item>Food</item>
+        <item>Tech</item>
+        <item>Entertainment</item>
+        <item>Important</item>
+    </string-array>
+
+</resources>

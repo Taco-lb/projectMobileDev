@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ExpenseView"
+    android:background="@drawable/bg">
+
+    <LinearLayout
+        android:id="@+id/titleTop"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:padding="15sp"
+        android:layout_marginTop="30sp">
+        <TextView
+            android:id="@+id/titleExpView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/welcome2"
+            android:textColor="@color/black"
+            android:textStyle="bold"
+            android:textSize="30sp"/>
+    </LinearLayout>
+
+    <ListView
+        android:layout_below="@+id/titleTop"
+        android:layout_marginTop="25sp"
+        android:id="@+id/listViewExp"
+        android:layout_width="match_parent"
+        android:layout_height="450sp"
+        android:divider="@android:color/transparent"
+        android:dividerHeight="5sp"
+        android:layout_marginHorizontal="20sp"
+        >
+    </ListView>
+
+    <TextView
+        android:id="@+id/totalPrice"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="10sp"
+        android:layout_below="@id/listViewExp"
+        android:textStyle="bold"
+        android:textSize="16sp"
+        android:textColor="@color/black"
+        android:layout_marginTop="15sp"
+        android:layout_toEndOf="@+id/toggleColor"/>
+
+    <ToggleButton
+        android:id="@+id/toggleColor"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/listViewExp"
+        android:layout_marginStart="20sp"
+        android:layout_marginTop="12sp"
+        android:textOff="@string/inLBP"
+        android:textOn="@string/inUSD"
+        android:backgroundTint="@color/white"
+        />
+
+</RelativeLayout>
