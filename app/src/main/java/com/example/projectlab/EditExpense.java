@@ -1,9 +1,11 @@
 package com.example.projectlab;
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.DatePickerDialog;
 import android.content.ContentValues;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -95,19 +97,32 @@ public class EditExpense extends AppCompatActivity {
 
     public void deleteExpense(View view){
         Uri uri = ExpensesDb.CONTENT_URI;
-        int flag = getContentResolver().delete(uri, ExpensesDb._ID + "=" + tempID, null);
 
-        if(flag>0) {
-            Toast.makeText(getBaseContext(), "Expense deleted", Toast.LENGTH_SHORT).show();
-            Intent intent = new Intent(EditExpense.this, ExpenseView.class);
-            startActivity(intent);
-            finish();
-        }
-
-        else{
-                Toast.makeText(getBaseContext(),"Expense not Deleted",Toast.LENGTH_SHORT).show();
+        AlertDialog.Builder alertBox = new AlertDialog.Builder(this);
+        alertBox.setTitle("Delete Exepense");
+        alertBox.setMessage("Are you sure you want to delete this expense?");
+        alertBox.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                int flag = getContentResolver().delete(uri, ExpensesDb._ID + "=" + tempID, null);
+                if(flag>0) {
+                    Toast.makeText(getBaseContext(), "Expense deleted", Toast.LENGTH_SHORT).show();
+                    Intent intent = new Intent(EditExpense.this, ExpenseView.class);
+                    startActivity(intent);
+                    finish();
+                }
             }
-
+        });
+        alertBox.setNegativeButton("No", new DialogInterface.OnClickListener(){
+            @Override
+            public void onClick(DialogInterface dialog, int which){
+                Toast.makeText(getBaseContext(),"Expense not Deleted",Toast.LENGTH_SHORT).show();
+                Intent openNext = new Intent(EditExpense.this,ExpenseView.class);
+                startActivity(openNext);
+                finish();
+            }
+        });
+        alertBox.create().show();
     }
 
     public void updateExpense(View view){

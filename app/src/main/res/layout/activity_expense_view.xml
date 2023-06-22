@@ -25,10 +25,10 @@
 
     <ListView
         android:layout_below="@+id/titleTop"
-        android:layout_marginTop="25sp"
+        android:layout_marginTop="20sp"
         android:id="@+id/listViewExp"
         android:layout_width="match_parent"
-        android:layout_height="450sp"
+        android:layout_height="420sp"
         android:divider="@android:color/transparent"
         android:dividerHeight="5sp"
         android:layout_marginHorizontal="20sp"
@@ -58,5 +58,44 @@
         android:textOn="@string/inUSD"
         android:backgroundTint="@color/white"
         />
+    <TableLayout
+        android:layout_marginHorizontal="20sp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/toggleColor">
+        <TableRow>
+            <TextView
+                android:id="@+id/ShowBy"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_column="1"
+                android:layout_marginStart="8sp"
+                android:layout_marginTop="12sp"
+                android:text="Show date :"
+                android:textColor="@color/black"
+                android:textSize="16sp"
+                />
+            <EditText
+                android:id="@+id/dateSort"
+                android:layout_width="150sp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10sp"
+                android:hint="@string/date_of_expense"
+                android:focusableInTouchMode="false"
+                android:autofillHints="date of purchase"
+                />
+            <Button
+                android:id="@+id/ButtonSort"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="11sp"
+                android:text="Sort"
+                android:textColor="@color/black"
+                android:backgroundTint="@color/white"
+                android:onClick="populateListDate"
+                />
+        </TableRow>
+    </TableLayout>
+
 
 </RelativeLayout>

@@ -224,14 +224,11 @@ public class MainActivity extends AppCompatActivity {
         spin.setAdapter(adapter);
     }
 
-
     //Method prevents the previous activities from being accessed after the click
     @Override
     public void onBackPressed() {
         moveTaskToBack(true);
     }
-
-
 
     private void changeTitleName(){
         TextView mainTitle = (TextView) findViewById(R.id.ExpensesMainTitle);
