@@ -28,18 +28,17 @@ import java.util.Locale;
 public class ExpenseView extends AppCompatActivity {
 
     ExpensesDb dbHelp = new ExpensesDb();
-    final Calendar myCalendar= Calendar.getInstance();
     public String itemId = "";
+    final Calendar myCalendar= Calendar.getInstance();
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_expense_view);
         populateList();
-        togglePrice();
         clickListItem();
         calendarOpen();
-
     }
 
     private void populateList() {
@@ -57,9 +56,9 @@ public class ExpenseView extends AppCompatActivity {
                     ListView listview = (ListView) findViewById(R.id.listViewExp);
                     listview.setAdapter(adapter);
                 }
-
             } while (cursor.moveToNext());
         }
+        togglePrice();
     }
 
     public void populateListDate(View view) {
@@ -70,7 +69,6 @@ public class ExpenseView extends AppCompatActivity {
         //An array list made of the special class i made to store the expenses properly.
         ArrayList<UsersData> dataList = new ArrayList<>();
         int tempCounter = 0;
-
 
         if (cursor.moveToFirst()) {
             do {
@@ -83,11 +81,13 @@ public class ExpenseView extends AppCompatActivity {
                         listview.setAdapter(adapter);
                         tempCounter++;
                     }
-
                 }
             } while (cursor.moveToNext());
         }
-        if (tempCounter == 0){Toast.makeText(this, "No Expenses on this Date", Toast.LENGTH_SHORT).show();}
+        if (tempCounter == 0){
+            Toast.makeText(this, "No Expenses on this Date", Toast.LENGTH_SHORT).show();
+        }
+        togglePrice1();
     }
 
     private String totalPrice(){
@@ -111,7 +111,7 @@ public class ExpenseView extends AppCompatActivity {
         DecimalFormat formatter = new DecimalFormat("#,###");
 
         float i = Float.parseFloat(totalPrice());
-        float temp = i*94000;
+        float temp = i*93000;
         int tempLbp = (int)temp;
 
         String totalLbp = formatter.format(tempLbp);
@@ -129,6 +129,50 @@ public class ExpenseView extends AppCompatActivity {
             }
         });
     }
+
+    //----------------------------------------------------------------
+
+    private String totalPrice1(){
+        Uri expenses = ExpensesDb.CONTENT_URI;
+        EditText calendar =(EditText) findViewById(R.id.dateSort);
+        String sortString = calendar.getText().toString();
+        Cursor cursor = getContentResolver().query(expenses, null, null, null, "_id");
+
+        float result = 0;
+        while(cursor.moveToNext()) {
+            if(cursor.getInt(6) == ExpensesDb.USERFINALID && cursor.getString(cursor.getColumnIndex(ExpensesDb.EXPDATE)).equals(sortString) ) {
+                result += cursor.getFloat(2);
+            }
+        }
+        return String.valueOf(result);
+    }
+
+    public void togglePrice1() {
+
+        ToggleButton tb1 = (ToggleButton) findViewById(R.id.toggleColor);
+        TextView t = (TextView) findViewById(R.id.totalPrice);
+        DecimalFormat formatter = new DecimalFormat("#,###");
+
+        float i = Float.parseFloat(totalPrice1());
+        float temp = i*93000;
+        int tempLbp = (int)temp;
+
+        String totalLbp = formatter.format(tempLbp);
+        t.setText("Total expense in USD is: \n$ " + totalPrice1() );
+
+        tb1.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                if(tb1.isChecked()){
+                    t.setText("Total expense in LBP is : \n" + totalLbp + " LBP");
+                }
+                else{
+                    t.setText("Total expense in USD is : \n$ " + totalPrice1() );
+                }
+            }
+        });
+    }
+
 
     public void clickListItem(){
         ListView lv = (ListView) findViewById(R.id.listViewExp);
@@ -149,10 +193,16 @@ public class ExpenseView extends AppCompatActivity {
         });
     }
 
+    public void defaultList(View view){
+        populateList();
+        EditText calendar =(EditText) findViewById(R.id.dateSort);
+        String sortString = calendar.getText().toString();
+        calendar.getText().clear();
+    }
+
 
     public void calendarOpen(){
         EditText calendar =(EditText) findViewById(R.id.dateSort);
-
         DatePickerDialog.OnDateSetListener date =new DatePickerDialog.OnDateSetListener() {
             @Override
             public void onDateSet(DatePicker view, int year, int month, int day) {
